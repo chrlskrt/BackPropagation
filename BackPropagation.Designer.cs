@@ -37,6 +37,8 @@
             btnTrainNN = new Button();
             btnTestNN = new Button();
             lblStatus = new Label();
+            listBox1 = new ListBox();
+            lblMinEpoch = new Label();
             SuspendLayout();
             // 
             // tbInput0
@@ -74,14 +76,14 @@
             // tbOutput
             // 
             tbOutput.Enabled = false;
-            tbOutput.Location = new Point(394, 120);
+            tbOutput.Location = new Point(326, 118);
             tbOutput.Name = "tbOutput";
-            tbOutput.Size = new Size(256, 27);
+            tbOutput.Size = new Size(192, 27);
             tbOutput.TabIndex = 4;
             // 
             // btnCreateNN
             // 
-            btnCreateNN.Location = new Point(100, 331);
+            btnCreateNN.Location = new Point(56, 331);
             btnCreateNN.Name = "btnCreateNN";
             btnCreateNN.Size = new Size(198, 29);
             btnCreateNN.TabIndex = 5;
@@ -91,7 +93,7 @@
             // 
             // btnTrainNN
             // 
-            btnTrainNN.Location = new Point(353, 331);
+            btnTrainNN.Location = new Point(320, 331);
             btnTrainNN.Name = "btnTrainNN";
             btnTrainNN.Size = new Size(198, 29);
             btnTrainNN.TabIndex = 6;
@@ -119,11 +121,31 @@
             lblStatus.TabIndex = 8;
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // listBox1
+            // 
+            listBox1.Cursor = Cursors.Hand;
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(555, 43);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(233, 244);
+            listBox1.TabIndex = 9;
+            listBox1.Visible = false;
+            // 
+            // lblMinEpoch
+            // 
+            lblMinEpoch.AutoSize = true;
+            lblMinEpoch.Location = new Point(326, 64);
+            lblMinEpoch.Name = "lblMinEpoch";
+            lblMinEpoch.Size = new Size(0, 20);
+            lblMinEpoch.TabIndex = 10;
+            // 
             // BackPropagation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblMinEpoch);
+            Controls.Add(listBox1);
             Controls.Add(lblStatus);
             Controls.Add(btnTestNN);
             Controls.Add(btnTrainNN);
@@ -151,5 +173,7 @@
         private Button btnTrainNN;
         private Button btnTestNN;
         private Label lblStatus;
+        private ListBox listBox1;
+        private Label lblMinEpoch;
     }
 }

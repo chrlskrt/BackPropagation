@@ -1,5 +1,7 @@
 using System.Windows.Forms;
+using System.Diagnostics;
 using Backprop;
+using Microsoft.VisualBasic.Devices;
 
 namespace BackPropagation
 {
@@ -38,7 +40,7 @@ namespace BackPropagation
 
         private void BackPropagation_Load(object sender, EventArgs e)
         {
-            min_epoch = 4000;
+            min_epoch = 10000;
         }
 
         private void btnCreateNN_Click(object sender, EventArgs e)
@@ -51,10 +53,21 @@ namespace BackPropagation
         {
             createNN();
 
-            for (int i = 0; i < min_epoch; i++)
+            for (int i = 1; i <= min_epoch; i++)
             {
                 trainNN();
+                double mad = testTrainNN();
+                //listBox1.Items.Add("Epoch: " + i + " \nAccuracy: " + mad);
+
+                if (mad <= 0.004)
+                {
+                    min_epoch = i;
+                    lblMinEpoch.Text = "min epoch: " + i;
+                    break;
+                }
             }
+
+
         }
 
         private void btnTestNN_Click(object sender, EventArgs e)
@@ -100,6 +113,35 @@ namespace BackPropagation
                 nn.setDesiredOutput(0, dataSet[i, inputSize]);
                 nn.learn();
             }
+        }
+
+        // computes mad error
+        private double testTrainNN()
+        {
+            //double errorThreshold = 0.01; // if the error is less than or equal to 0.01, then it should suffice
+            //double accurateNum = 0;
+            double errorSum = 0;
+
+            for (int i = 0; i < Math.Pow(2, inputSize); i++)
+            {
+                for (int j = 0; j < inputSize; j++)
+                {
+                    nn.setInputs(j, dataSet[i, j]);
+                }
+
+                nn.run();
+
+                //if (Math.Abs((double) dataSet[i, inputSize] - nn.getOuputData(0)) <= errorThreshold)
+                //{
+                //    accurateNum++;
+                //}
+                errorSum = Math.Abs((double) dataSet[i, inputSize] - nn.getOuputData(0));
+
+
+            }
+
+            //return accurateNum / Math.Pow(2, inputSize);
+            return errorSum / Math.Pow(2, inputSize);
         }
     }
 }
