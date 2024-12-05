@@ -36,11 +36,13 @@
             btnCreateNN = new Button();
             btnTrainNN = new Button();
             btnTestNN = new Button();
+            lblStatus = new Label();
             SuspendLayout();
             // 
             // tbInput0
             // 
             tbInput0.Location = new Point(35, 64);
+            tbInput0.MaxLength = 1;
             tbInput0.Name = "tbInput0";
             tbInput0.Size = new Size(250, 27);
             tbInput0.TabIndex = 0;
@@ -48,6 +50,7 @@
             // tbInput1
             // 
             tbInput1.Location = new Point(36, 120);
+            tbInput1.MaxLength = 1;
             tbInput1.Name = "tbInput1";
             tbInput1.Size = new Size(249, 27);
             tbInput1.TabIndex = 1;
@@ -55,6 +58,7 @@
             // tbInput2
             // 
             tbInput2.Location = new Point(38, 171);
+            tbInput2.MaxLength = 1;
             tbInput2.Name = "tbInput2";
             tbInput2.Size = new Size(247, 27);
             tbInput2.TabIndex = 2;
@@ -62,6 +66,7 @@
             // tbInput3
             // 
             tbInput3.Location = new Point(37, 221);
+            tbInput3.MaxLength = 1;
             tbInput3.Name = "tbInput3";
             tbInput3.Size = new Size(248, 27);
             tbInput3.TabIndex = 3;
@@ -104,11 +109,22 @@
             btnTestNN.UseVisualStyleBackColor = true;
             btnTestNN.Click += btnTestNN_Click;
             // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStatus.Location = new Point(278, 277);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(0, 23);
+            lblStatus.TabIndex = 8;
+            lblStatus.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // BackPropagation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblStatus);
             Controls.Add(btnTestNN);
             Controls.Add(btnTrainNN);
             Controls.Add(btnCreateNN);
@@ -119,6 +135,7 @@
             Controls.Add(tbInput0);
             Name = "BackPropagation";
             Text = "BackPropagation";
+            Load += BackPropagation_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,5 +150,6 @@
         private Button btnCreateNN;
         private Button btnTrainNN;
         private Button btnTestNN;
+        private Label lblStatus;
     }
 }
