@@ -37,8 +37,9 @@
             btnTrainNN = new Button();
             btnTestNN = new Button();
             lblStatus = new Label();
-            listBox1 = new ListBox();
-            lblMinEpoch = new Label();
+            lblEpoch = new Label();
+            tbInputEpoch = new TextBox();
+            lblInputEpoch = new Label();
             SuspendLayout();
             // 
             // tbInput0
@@ -78,12 +79,12 @@
             tbOutput.Enabled = false;
             tbOutput.Location = new Point(326, 118);
             tbOutput.Name = "tbOutput";
-            tbOutput.Size = new Size(192, 27);
+            tbOutput.Size = new Size(351, 27);
             tbOutput.TabIndex = 4;
             // 
             // btnCreateNN
             // 
-            btnCreateNN.Location = new Point(56, 331);
+            btnCreateNN.Location = new Point(67, 394);
             btnCreateNN.Name = "btnCreateNN";
             btnCreateNN.Size = new Size(198, 29);
             btnCreateNN.TabIndex = 5;
@@ -93,7 +94,7 @@
             // 
             // btnTrainNN
             // 
-            btnTrainNN.Location = new Point(320, 331);
+            btnTrainNN.Location = new Point(326, 394);
             btnTrainNN.Name = "btnTrainNN";
             btnTrainNN.Size = new Size(198, 29);
             btnTrainNN.TabIndex = 6;
@@ -103,7 +104,7 @@
             // 
             // btnTestNN
             // 
-            btnTestNN.Location = new Point(590, 331);
+            btnTestNN.Location = new Point(590, 394);
             btnTestNN.Name = "btnTestNN";
             btnTestNN.Size = new Size(198, 29);
             btnTestNN.TabIndex = 7;
@@ -115,37 +116,47 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblStatus.Location = new Point(278, 277);
+            lblStatus.Location = new Point(131, 277);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(0, 23);
             lblStatus.TabIndex = 8;
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // listBox1
+            // lblEpoch
             // 
-            listBox1.Cursor = Cursors.Hand;
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(555, 43);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(233, 244);
-            listBox1.TabIndex = 9;
-            listBox1.Visible = false;
+            lblEpoch.AutoSize = true;
+            lblEpoch.Location = new Point(326, 64);
+            lblEpoch.Name = "lblEpoch";
+            lblEpoch.Size = new Size(0, 20);
+            lblEpoch.TabIndex = 10;
             // 
-            // lblMinEpoch
+            // tbInputEpoch
             // 
-            lblMinEpoch.AutoSize = true;
-            lblMinEpoch.Location = new Point(326, 64);
-            lblMinEpoch.Name = "lblMinEpoch";
-            lblMinEpoch.Size = new Size(0, 20);
-            lblMinEpoch.TabIndex = 10;
+            tbInputEpoch.Location = new Point(328, 351);
+            tbInputEpoch.Name = "tbInputEpoch";
+            tbInputEpoch.Size = new Size(196, 27);
+            tbInputEpoch.TabIndex = 11;
+            tbInputEpoch.Text = "1000";
+            tbInputEpoch.Visible = false;
+            // 
+            // lblInputEpoch
+            // 
+            lblInputEpoch.AutoSize = true;
+            lblInputEpoch.Location = new Point(330, 326);
+            lblInputEpoch.Name = "lblInputEpoch";
+            lblInputEpoch.Size = new Size(145, 20);
+            lblInputEpoch.TabIndex = 12;
+            lblInputEpoch.Text = "Epochs to train data:";
+            lblInputEpoch.Visible = false;
             // 
             // BackPropagation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(lblMinEpoch);
-            Controls.Add(listBox1);
+            Controls.Add(lblInputEpoch);
+            Controls.Add(tbInputEpoch);
+            Controls.Add(lblEpoch);
             Controls.Add(lblStatus);
             Controls.Add(btnTestNN);
             Controls.Add(btnTrainNN);
@@ -173,7 +184,8 @@
         private Button btnTrainNN;
         private Button btnTestNN;
         private Label lblStatus;
-        private ListBox listBox1;
-        private Label lblMinEpoch;
+        private Label lblEpoch;
+        private TextBox tbInputEpoch;
+        private Label lblInputEpoch;
     }
 }

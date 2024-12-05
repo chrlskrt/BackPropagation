@@ -12,6 +12,7 @@ namespace BackPropagation
         int outputSize = 1;
         int hiddenNeuron;
         int min_epoch;
+        int curr_epoch;
         int[,] dataSet;
 
         public BackPropagation()
@@ -46,27 +47,55 @@ namespace BackPropagation
         private void btnCreateNN_Click(object sender, EventArgs e)
         {
             createNN();
+            curr_epoch = 0;
+            tbInputEpoch.Visible = false;
+            lblInputEpoch.Visible = false;
             lblStatus.Text = "Neural Network successfully created.";
+            lblEpoch.Text = "curr epoch: 0";
         }
 
         private void btnTrainNN_Click(object sender, EventArgs e)
         {
-            createNN();
-
-            for (int i = 1; i <= min_epoch; i++)
+            if (nn == null)
             {
-                trainNN();
-                double mad = testTrainNN();
-                //listBox1.Items.Add("Epoch: " + i + " \nAccuracy: " + mad);
-
-                if (mad <= 0.004)
-                {
-                    min_epoch = i;
-                    lblMinEpoch.Text = "min epoch: " + i;
-                    break;
-                }
+                createNN();
             }
 
+            if (curr_epoch == 0)
+            {
+                for (int i = 1; i <= min_epoch; i++)
+                {
+                    trainNN();
+                    double mad = testTrainNN();
+                    if (mad <= 0.01)
+                    {
+                        min_epoch = i;
+                        break;
+                    }
+                }
+
+                curr_epoch = min_epoch;
+                tbInputEpoch.Visible = true;
+                lblInputEpoch.Visible = true;
+            }
+            else
+            {
+                if (curr_epoch >= 100000)
+                {
+                    return;
+                }
+
+                int epoch = Convert.ToInt32(tbInputEpoch.Text);
+
+                for (int i = 0; i < epoch; i++)
+                {
+                    trainNN();
+                }
+
+                curr_epoch += epoch;
+            }
+
+            lblEpoch.Text = "curr epoch: " + curr_epoch;
 
         }
 
@@ -118,8 +147,6 @@ namespace BackPropagation
         // computes mad error
         private double testTrainNN()
         {
-            //double errorThreshold = 0.01; // if the error is less than or equal to 0.01, then it should suffice
-            //double accurateNum = 0;
             double errorSum = 0;
 
             for (int i = 0; i < Math.Pow(2, inputSize); i++)
@@ -130,17 +157,9 @@ namespace BackPropagation
                 }
 
                 nn.run();
-
-                //if (Math.Abs((double) dataSet[i, inputSize] - nn.getOuputData(0)) <= errorThreshold)
-                //{
-                //    accurateNum++;
-                //}
-                errorSum = Math.Abs((double) dataSet[i, inputSize] - nn.getOuputData(0));
-
-
+                errorSum = Math.Abs((double)dataSet[i, inputSize] - nn.getOuputData(0));
             }
 
-            //return accurateNum / Math.Pow(2, inputSize);
             return errorSum / Math.Pow(2, inputSize);
         }
     }
