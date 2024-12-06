@@ -1,6 +1,6 @@
 ﻿namespace BackPropagation
 {
-    partial class BackPropagation
+    partial class BP4InputAND
     {
         /// <summary>
         ///  Required designer variable.
@@ -40,6 +40,9 @@
             lblEpoch = new Label();
             tbInputEpoch = new TextBox();
             lblInputEpoch = new Label();
+            menuStrip1 = new MenuStrip();
+            inputORToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // tbInput0
@@ -144,10 +147,27 @@
             lblInputEpoch.AutoSize = true;
             lblInputEpoch.Location = new Point(330, 326);
             lblInputEpoch.Name = "lblInputEpoch";
-            lblInputEpoch.Size = new Size(145, 20);
+            lblInputEpoch.Size = new Size(292, 20);
             lblInputEpoch.TabIndex = 12;
-            lblInputEpoch.Text = "Epochs to train data:";
+            lblInputEpoch.Text = "Additional number of Epochs to train data:";
             lblInputEpoch.Visible = false;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { inputORToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 28);
+            menuStrip1.TabIndex = 13;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // inputORToolStripMenuItem
+            // 
+            inputORToolStripMenuItem.Name = "inputORToolStripMenuItem";
+            inputORToolStripMenuItem.Size = new Size(95, 24);
+            inputORToolStripMenuItem.Text = "2-input OR";
+            inputORToolStripMenuItem.Click += inputORToolStripMenuItem_Click;
             // 
             // BackPropagation
             // 
@@ -166,9 +186,14 @@
             Controls.Add(tbInput2);
             Controls.Add(tbInput1);
             Controls.Add(tbInput0);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "BackPropagation";
-            Text = "BackPropagation";
+            Text = "BackPropagation - 4 input AND";
             Load += BackPropagation_Load;
+            FormClosing += BP4InputAND_FormClosing;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -187,5 +212,7 @@
         private Label lblEpoch;
         private TextBox tbInputEpoch;
         private Label lblInputEpoch;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem inputORToolStripMenuItem;
     }
 }

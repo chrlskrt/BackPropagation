@@ -5,7 +5,7 @@ using Microsoft.VisualBasic.Devices;
 
 namespace BackPropagation
 {
-    public partial class BackPropagation : Form
+    public partial class BP4InputAND : Form
     {
         NeuralNet nn;
         int inputSize = 4;
@@ -14,8 +14,9 @@ namespace BackPropagation
         int min_epoch;
         int curr_epoch;
         int[,] dataSet;
+        BP2InputOR bpOR;
 
-        public BackPropagation()
+        public BP4InputAND()
         {
             InitializeComponent();
             dataSet = new int[16, 5]
@@ -37,11 +38,19 @@ namespace BackPropagation
                 { 1, 1, 1, 0, 0 },
                 { 1, 1, 1, 1, 1 }
             };
+
+            bpOR = new BP2InputOR();
+            bpOR.Owner = this;
         }
 
         private void BackPropagation_Load(object sender, EventArgs e)
         {
             min_epoch = 10000;
+        }
+
+        private void BP4InputAND_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            bpOR.Dispose();
         }
 
         private void btnCreateNN_Click(object sender, EventArgs e)
@@ -161,6 +170,12 @@ namespace BackPropagation
             }
 
             return errorSum / Math.Pow(2, inputSize);
+        }
+
+        private void inputORToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bpOR.Show();
+            this.Hide();
         }
     }
 }
